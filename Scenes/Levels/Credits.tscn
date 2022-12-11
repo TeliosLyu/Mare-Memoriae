@@ -1,0 +1,138 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Art/level-background.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/UI/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/bgm_toggle.gd" type="Script" id=3]
+[ext_resource path="res://Art/m5x7_font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scripts/level_traversal.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 200
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 70
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+resource_local_to_scene = true
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 4 )
+
+[node name="Credits" type="Node"]
+
+[node name="Level-background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 100
+
+[node name="text" type="RichTextLabel" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -556.5
+margin_top = 48.0
+margin_right = 556.5
+margin_bottom = 217.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Credits[/center]"
+tab_size = 0
+text = "Credits"
+
+[node name="credits_text" type="RichTextLabel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 51.0
+margin_top = 244.0
+margin_right = -41.0
+margin_bottom = -179.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "Music:
+Claude Debussy - Suite bergamasque Clair de lune
+
+
+Sound effect:
+Minimalist7 - Provided in the \"Universal UI/Menu Soundpack\" by Ellr
+
+
+Font:
+m5x7 - Made by Daniel Linssen"
+tab_size = 0
+text = "Music:
+Claude Debussy - Suite bergamasque Clair de lune
+
+
+Sound effect:
+Minimalist7 - Provided in the \"Universal UI/Menu Soundpack\" by Ellr
+
+
+Font:
+m5x7 - Made by Daniel Linssen"
+
+[node name="credits_link_1" type="RichTextLabel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 51.0
+margin_top = 360.0
+margin_right = -41.0
+margin_bottom = -179.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 4 )
+tab_size = 0
+text = "https://www.yourclassical.org/episode/2017/02/13/daily-download-claude-debussy--suite-bergamasque-clair-de-lune"
+
+[node name="credits_link_2" type="RichTextLabel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 51.0
+margin_top = 589.0
+margin_right = -41.0
+margin_bottom = -179.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 4 )
+tab_size = 0
+text = "https://ellr.itch.io/universal-ui-soundpack"
+
+[node name="credits_link_3" type="RichTextLabel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 51.0
+margin_top = 827.0
+margin_right = -41.0
+margin_bottom = -175.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 4 )
+tab_size = 0
+text = "https://managore.itch.io/m5x7"
+
+[node name="Main_Menu" parent="CanvasLayer" instance=ExtResource( 2 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = -175.0
+margin_right = 415.0
+margin_bottom = -40.0
+rect_min_size = Vector2( 250, 90 )
+custom_fonts/font = SubResource( 2 )
+text = "Main Menu"
+script = ExtResource( 5 )
+
+[node name="BGM Toggle" parent="CanvasLayer" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_bottom = 75.0
+script = ExtResource( 3 )
+
+[connection signal="pressed" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_pressed"]
+[connection signal="toggled" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_toggled"]

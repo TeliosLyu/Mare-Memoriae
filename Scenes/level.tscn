@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/tiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Art/level-background.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/pause.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/game_grid.gd" type="Script" id=16]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 16 )
+
+[node name="Level-background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="game_grid" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 60, 60 )
+format = 1
+tile_data = PoolIntArray( 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 5, 5, 0, 6, 5, 0, 7, 5, 0, 8, 5, 0, 9, 5, 0, 10, 5, 0, 11, 5, 0, 12, 5, 0, 13, 5, 0, 14, 5, 0, 15, 5, 0, 65536, 5, 0, 65541, 7, 0, 65542, 7, 0, 65543, 3, 0, 65544, 5, 0, 65545, 7, 0, 65551, 5, 0, 131072, 5, 0, 131077, 7, 0, 131078, 1610612740, 0, 131079, 7, 0, 131080, 7, 0, 131081, 8, 0, 131087, 5, 0, 196608, 5, 0, 196613, 7, 0, 196614, 7, 0, 196615, 1, 0, 196616, 6, 0, 196617, 7, 0, 196618, 0, 0, 196623, 5, 0, 262144, 5, 0, 262149, 7, 0, 262150, 5, 0, 262151, 5, 0, 262152, 8, 0, 262153, 7, 0, 262154, 7, 0, 262155, 7, 0, 262156, 7, 0, 262159, 5, 0, 327680, 5, 0, 327685, 7, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 7, 0, 327690, 7, 0, 327691, 7, 0, 327692, 2, 0, 327695, 5, 0, 393216, 5, 0, 393227, 7, 0, 393228, 7, 0, 393231, 5, 0, 458752, 5, 0, 458767, 5, 0, 524288, 5, 0, 524289, 5, 0, 524290, 5, 0, 524291, 5, 0, 524292, 5, 0, 524293, 5, 0, 524294, 5, 0, 524295, 5, 0, 524296, 5, 0, 524297, 5, 0, 524298, 5, 0, 524299, 5, 0, 524300, 5, 0, 524301, 5, 0, 524302, 5, 0, 524303, 5, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.092392, 0.0480652, 0.136719, 0.431373 )

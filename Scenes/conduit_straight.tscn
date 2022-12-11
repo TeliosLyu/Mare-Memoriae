@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/conduit.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 6 )
+
+[node name="conduit_straight" instance=ExtResource( 1 )]
+type_id = 3
+
+[node name="conduit_sprite" parent="." index="0"]
+animation = "straight"
+
+[node name="connection_check_2" type="CollisionShape2D" parent="connections" index="1"]
+position = Vector2( 0, 30 )
+shape = SubResource( 1 )

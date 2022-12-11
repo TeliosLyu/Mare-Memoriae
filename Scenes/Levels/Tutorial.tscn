@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Art/level-background.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/UI/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/bgm_toggle.gd" type="Script" id=3]
+[ext_resource path="res://Art/m5x7_font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scripts/level_traversal.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/tiles.tres" type="TileSet" id=6]
+[ext_resource path="res://Art/dynamic/straight-on.png" type="Texture" id=7]
+[ext_resource path="res://Art/dynamic/goal-on.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 200
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 80
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 4 )
+
+[node name="Node" type="Node"]
+
+[node name="Level-background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="game_grid" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 60, 60 )
+format = 1
+tile_data = PoolIntArray( 131085, 2, 0, 131086, 4, 0, 196621, 8, 0, 196622, 6, 0, 262145, -1610612735, 0 )
+
+[node name="Straight-on" type="Sprite" parent="game_grid"]
+position = Vector2( 150, 270 )
+rotation = 1.5708
+texture = ExtResource( 7 )
+
+[node name="Goal-on" type="Sprite" parent="game_grid"]
+position = Vector2( 209.5, 270 )
+rotation = -1.5708
+texture = ExtResource( 8 )
+
+[node name="Goal-on2" type="Sprite" parent="game_grid"]
+position = Vector2( 510, 390 )
+texture = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 100
+
+[node name="title" type="RichTextLabel" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -556.5
+margin_top = 48.0
+margin_right = 556.5
+margin_bottom = 217.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Tutorial[/center]"
+tab_size = 0
+text = "Tutorial"
+
+[node name="tutorial_text_1" type="RichTextLabel" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 51.0
+margin_top = -296.0
+margin_right = 1549.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Click on a tile to rotate it clockwise.
+Static (unmovable) tiles will be greyed out.
+The source tile will power up connected tiles.
+
+
+
+The level is completed when all goal tiles are lit up!"
+tab_size = 0
+text = "Click on a tile to rotate it clockwise.
+Static (unmovable) tiles will be greyed out.
+The source tile will power up connected tiles.
+
+
+
+The level is completed when all goal tiles are lit up!"
+
+[node name="Main_Menu" parent="CanvasLayer" instance=ExtResource( 2 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = -175.0
+margin_right = 415.0
+margin_bottom = -40.0
+rect_min_size = Vector2( 250, 90 )
+custom_fonts/font = SubResource( 2 )
+text = "Main Menu"
+script = ExtResource( 5 )
+
+[node name="BGM Toggle" parent="CanvasLayer" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_bottom = 75.0
+script = ExtResource( 3 )
+
+[connection signal="pressed" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_pressed"]
+[connection signal="toggled" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_toggled"]

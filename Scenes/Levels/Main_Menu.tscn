@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/level_traversal.gd" type="Script" id=1]
+[ext_resource path="res://Art/level-background.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/UI/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/bgm_toggle.gd" type="Script" id=5]
+[ext_resource path="res://Art/m5x7_font.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=2]
+resource_local_to_scene = true
+size = 200
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+font_data = ExtResource( 7 )
+
+[node name="Main_Menu" type="Node"]
+
+[node name="Level-background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 100
+
+[node name="text" type="RichTextLabel" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -556.5
+margin_top = 132.0
+margin_right = 556.5
+margin_bottom = 301.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]Mare Memoriae[/center]"
+tab_size = 0
+text = "Mare Memoriae"
+
+[node name="Level_Select" parent="CanvasLayer" instance=ExtResource( 3 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 256.0
+margin_top = -90.0
+margin_right = 756.0
+rect_min_size = Vector2( 250, 90 )
+custom_fonts/font = SubResource( 3 )
+text = "Select Level"
+script = ExtResource( 1 )
+go_to_level = "level_select"
+
+[node name="Tutorial" parent="CanvasLayer" instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -756.0
+margin_top = -90.0
+margin_right = -256.0
+rect_min_size = Vector2( 250, 90 )
+custom_fonts/font = SubResource( 3 )
+text = "Tutorial"
+script = ExtResource( 1 )
+go_to_level = "tutorial"
+
+[node name="Credits" parent="CanvasLayer" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -250.0
+margin_top = -324.0
+margin_bottom = -144.0
+rect_min_size = Vector2( 250, 90 )
+custom_fonts/font = SubResource( 3 )
+text = "Credits"
+script = ExtResource( 1 )
+go_to_level = "credits"
+
+[node name="BGM Toggle" parent="CanvasLayer" instance=ExtResource( 3 )]
+pause_mode = 2
+margin_bottom = 75.0
+script = ExtResource( 5 )
+
+[connection signal="pressed" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_pressed"]
+[connection signal="toggled" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_toggled"]

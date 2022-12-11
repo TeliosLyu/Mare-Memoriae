@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Claude Debussy - Suite bergamasque Clair de lune.mp3-d6ff79337bf6d552fc02dcb122ec10f6.mp3str"
+
+[deps]
+
+source_file="res://Music/Claude Debussy - Suite bergamasque Clair de lune.mp3"
+dest_files=[ "res://.import/Claude Debussy - Suite bergamasque Clair de lune.mp3-d6ff79337bf6d552fc02dcb122ec10f6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

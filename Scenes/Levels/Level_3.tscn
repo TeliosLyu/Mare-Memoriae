@@ -1,0 +1,178 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/tiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Art/level-background.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/game_grid.gd" type="Script" id=3]
+[ext_resource path="res://Art/pop_up_frame.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/UI/Button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/pause.gd" type="Script" id=6]
+[ext_resource path="res://Art/m5x7_font.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/bgm_toggle.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/stage_completion.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/level_traversal.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 7 )
+
+[node name="Level_3" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Level-background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="game_grid" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 60, 60 )
+format = 1
+tile_data = PoolIntArray( 65538, 1610612743, 0, 65539, -1073741818, 0, 65540, 1610612741, 0, 65541, -1073741817, 0, 65546, 1610612743, 0, 65547, 5, 0, 65548, -1610612730, 0, 65549, -1073741817, 0, 131074, 6, 0, 131075, 1610612738, 0, 131076, -1073741819, 0, 131077, -1610612729, 0, 131078, -1073741817, 0, 131081, 1610612743, 0, 131082, 7, 0, 131083, -1073741817, 0, 131084, 1610612740, 0, 131085, 6, 0, 196610, 6, 0, 196611, -1610612729, 0, 196612, -1610612731, 0, 196613, 7, 0, 196614, -1610612729, 0, 196615, -1073741818, 0, 196616, -1073741818, 0, 196617, 7, 0, 196618, -1073741818, 0, 196619, -1610612729, 0, 196620, 7, 0, 196621, 6, 0, 262146, 6, 0, 262148, 1610612741, 0, 262149, -1610612729, 0, 262150, 7, 0, 262153, -1610612729, 0, 262154, 7, 0, 262155, 1610612741, 0, 262157, 6, 0, 327682, 6, 0, 327684, -1610612728, 0, 327685, -1073741817, 0, 327686, 1610612743, 0, 327687, -1073741818, 0, 327688, -1073741818, 0, 327689, -1073741817, 0, 327690, 1610612743, 0, 327691, -1073741817, 0, 327693, 6, 0, 393218, -1610612728, 0, 393219, 1610612743, 0, 393220, -1073741817, 0, 393221, -1610612729, 0, 393222, 1610612743, 0, 393225, -1073741817, 0, 393226, -1073741817, 0, 393227, -1610612729, 0, 393228, -1073741817, 0, 393229, 7, 0, 458755, 4, 0, 458764, 2, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 100
+
+[node name="Pause Button" parent="CanvasLayer" instance=ExtResource( 5 )]
+pause_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -150.0
+margin_right = 0.0
+margin_bottom = 75.0
+text = "Pause"
+script = ExtResource( 6 )
+
+[node name="Pause" type="Control" parent="CanvasLayer/Pause Button"]
+pause_mode = 2
+visible = false
+margin_left = -1770.0
+margin_right = 150.0
+margin_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause Button/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.092392, 0.0480652, 0.136719, 0.431373 )
+
+[node name="pop_up" type="NinePatchRect" parent="CanvasLayer/Pause Button/Pause"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -175.0
+margin_right = 300.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 600, 350 )
+texture = ExtResource( 4 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Pause Button/Pause/pop_up"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -150.0
+margin_top = 80.0
+margin_right = 150.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Paused"
+tab_size = 0
+text = "Paused"
+
+[node name="main_menu" parent="CanvasLayer/Pause Button/Pause/pop_up" instance=ExtResource( 5 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = -120.0
+margin_right = 275.0
+margin_bottom = -30.0
+text = "Main Menu"
+script = ExtResource( 10 )
+
+[node name="resume" parent="CanvasLayer/Pause Button/Pause/pop_up" instance=ExtResource( 5 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -275.0
+margin_top = -120.0
+margin_right = -25.0
+margin_bottom = -30.0
+rect_min_size = Vector2( 250, 90 )
+text = "Resume"
+
+[node name="stage_completion" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 9 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stage_completion"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.092392, 0.0480652, 0.136719, 0.431373 )
+
+[node name="pop_up" type="NinePatchRect" parent="CanvasLayer/stage_completion"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -175.0
+margin_right = 300.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 600, 350 )
+texture = ExtResource( 4 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="text" type="RichTextLabel" parent="CanvasLayer/stage_completion/pop_up"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -200.0
+margin_top = 33.5
+margin_right = 200.0
+margin_bottom = 202.5
+rect_min_size = Vector2( 75, 30 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Stage
+Completed!"
+tab_size = 0
+text = "Stage
+Completed!"
+
+[node name="main_menu" parent="CanvasLayer/stage_completion/pop_up" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -125.0
+margin_top = -120.0
+margin_right = 125.0
+margin_bottom = -30.0
+text = "Main Menu"
+script = ExtResource( 10 )
+
+[node name="BGM Toggle" parent="CanvasLayer" instance=ExtResource( 5 )]
+pause_mode = 2
+margin_bottom = 75.0
+script = ExtResource( 8 )
+
+[connection signal="stage_complete" from="." to="CanvasLayer/stage_completion" method="_on_stage_complete"]
+[connection signal="pressed" from="CanvasLayer/Pause Button" to="CanvasLayer/Pause Button" method="_on_Pause_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause Button/Pause/pop_up/main_menu" to="CanvasLayer/Pause Button" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause Button/Pause/pop_up/resume" to="CanvasLayer/Pause Button" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_pressed"]
+[connection signal="toggled" from="CanvasLayer/BGM Toggle" to="CanvasLayer/BGM Toggle" method="_on_BGM_Toggle_toggled"]

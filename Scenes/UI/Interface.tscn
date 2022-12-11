@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Art/pop_up_frame.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/pause.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/Button.tscn" type="PackedScene" id=3]
+
+[node name="Interface" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BGM Toggle" parent="." instance=ExtResource( 3 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.092392, 0.0480652, 0.136719, 0.431373 )
+
+[node name="pop_up" type="NinePatchRect" parent="CanvasLayer/Pause"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -450.0
+margin_top = -300.0
+margin_right = 450.0
+margin_bottom = 300.0
+texture = ExtResource( 1 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
